@@ -64,6 +64,7 @@ const GET_TOP_100 = gql`
         }
         coverImage {
           medium
+          extraLarge
         }
       }
     }

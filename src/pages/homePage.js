@@ -6,7 +6,6 @@ import HotAnime from "../Components/HotAnime";
 import PopularAnime from "../Components/PopularAnime";
 import Top100 from "../Components/Top100";
 import GetData from "../graphql/anime/getData";
-
 const Container = styled.div`
     display: flex;
     flex-direction: column;

@@ -1,42 +1,58 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import {Link} from 'react-router-dom'
+const colors = [
+  "#3e42f4",
+  "#f08d74",
+  "#ead686",
+  "#869ffc",
+  "#d94fff",
+  "#a63909",
+  "#ab2b54",
+  "#b8940f",
+  "#49616d",
+  "#49a882",
+];
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 2em;
+  width: 73%;
+  margin: auto;
+  justify-content: space-between;
   position: relative;
 `;
-const ViewAll = styled.div`
-  position: absolute;
-  right: 15%;
-  top: 8%;
-  a {
-    font-size: 0.9em;
-    text-decoration: none;
-    color: inherit;
-  }
-`;
-const Popular = styled.h4`
-  font-size: 25px;
-  font-weight: 400;
-  margin-left: 7.5em;
-  /* align-self: flex-start; */
+const Alltime = styled.h4`
+  font-size: 1.8em;
+  margin-left: 1em;
+  justify-self: flex-start;
+  font-family: "Overpass", sans-serif;
   color: rgb(94, 115, 128);
-  text-transform: uppercase;
+  font-weight: 700;
 `;
 const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-gap: 28px 30px;
+  grid-template-columns: repeat(auto-fill, 185px);
 `;
 const AnimeContainer = styled.div`
   height: 20em;
   width: 12em;
   //   flex: 1.2 0.8;
   margin: 2em 1.5em;
+  position: relative;
+`;
+const Ranking = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  color: white;
+  width: 45px;
+  left: -3%;
+  top: -4%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 45px;
+  font-size: 1.2em;
+  background-color: ${(props) => props.bgd};
+  font-family: "Overpass", sans-serif;
 `;
 const ImageContainer = styled.div`
   img {
@@ -55,21 +71,22 @@ const Title = styled.p`
   font-size: 0.9em;
   align-self: flex-start;
 `;
-function PopularAnime() {
-  const popularAnime = useSelector((state) => state.anime.popularPage);
+
+function Top100AnimePage() {
+  const top100Anime = useSelector((state) => state.anime.top100Page);
   return (
     <>
       <Container>
-        <ViewAll>
-          <Link to="/popular">View All</Link>
-        </ViewAll>
-        <Popular>Popular This Season</Popular>
+        <Alltime>Top 100 Anime</Alltime>
         <CardContainer>
-          {popularAnime &&
-            popularAnime.Page.media.slice(0, 5).map((element) => {
+          {top100Anime &&
+            top100Anime.Page.media.map((element, id) => {
               return (
                 <>
                   <AnimeContainer>
+                    <Ranking bgd={colors[id % 10]}>
+                      <p>#{id + 1}</p>
+                    </Ranking>
                     <ImageContainer>
                       <img src={element?.coverImage?.extraLarge} alt="" />
                     </ImageContainer>
@@ -86,4 +103,4 @@ function PopularAnime() {
   );
 }
 
-export default PopularAnime;
+export default Top100AnimePage;

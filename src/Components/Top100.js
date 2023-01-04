@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import {Link} from 'react-router-dom'
 const colors = [
   "rgb(239,93,93)",
   "rgb(52,128,234)",
@@ -115,7 +116,7 @@ function Top100() {
   return (
     <>
       <Container>
-        <ViewAll><a href="/">View All</a></ViewAll>
+        <ViewAll><Link to="/top100">View All</Link></ViewAll>
         <Top>Top 100</Top>
         <TableContainer>
           {top100Anime?.Page.media.slice(0, 10).map((element, id) => {

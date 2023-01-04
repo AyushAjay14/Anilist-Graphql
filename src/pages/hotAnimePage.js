@@ -1,37 +1,32 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import {Link} from 'react-router-dom'
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 const Container = styled.div`
   /* display: flex;
   flex-wrap: wrap;
   justify-content: center; */
-  width: 100%;
-  height: 59vh;
+  width: 73%;
+  margin: auto;
+  justify-content: space-between;
   position: relative;
 `;
-const ViewAll = styled.div`
-  position: absolute;
-  right: 15%;
-  top: 8%;
-  a{
-    font-size: 0.9em;
-    text-decoration: none;
-    color: inherit;
-  }
-`
 const Trending = styled.h4`
-    font-size: 25px;
-    font-weight: 400;
-    margin-left: 7.5em;
-    justify-self: flex-start;
-    color: rgb(94,115,128);
-    text-transform: uppercase;
-`
+  font-size: 1.8em;
+  margin-left: 1em;
+  justify-self: flex-start;
+  font-family: "Overpass", sans-serif;
+  color: rgb(94, 115, 128);
+  font-weight: 700;
+`;
 const TrendContainer = styled.div`
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; */
+  display: grid;
+  grid-gap: 28px 30px;
+  grid-template-columns: repeat(auto-fill, 185px);
 `;
 const AnimeContainer = styled.div`
   height: 20em;
@@ -55,23 +50,27 @@ const Title = styled.p`
   font-size: 0.9em;
   align-self: flex-start;
 `;
-function HotAnime() {
+function HotAnimePage() {
   const animePage = useSelector((state) => state.anime.animePage);
-  
 
   return (
     <>
       <Container>
-      <ViewAll><Link to="/hotanime">View All</Link></ViewAll>
-        <Trending>Trending Now</Trending>
+        <Trending>Trending Anime</Trending>
         <TrendContainer>
           {animePage &&
-            animePage.Page.mediaTrends.slice(0, 5).map((element) => {
+            animePage.Page.mediaTrends.map((element) => {
               return (
                 <>
                   <AnimeContainer>
                     <ImageContainer>
-                      <img src={element?.media.coverImage?.extraLarge} alt="" />
+                      <LazyLoadImage
+                        alt="Product image"
+                        height={280}
+                        src={element?.media.coverImage?.extraLarge}
+                        effect="blur"
+                        width={200}
+                      />
                     </ImageContainer>
                     <ContentContainer>
                       <Title>{element?.media.title?.userPreferred}</Title>
@@ -86,4 +85,4 @@ function HotAnime() {
   );
 }
 
-export default HotAnime;
+export default HotAnimePage;

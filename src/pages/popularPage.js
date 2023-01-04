@@ -1,36 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import {Link} from 'react-router-dom'
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 2em;
+  width: 73%;
+  margin: auto;
+  justify-content: space-between;
   position: relative;
 `;
-const ViewAll = styled.div`
-  position: absolute;
-  right: 15%;
-  top: 8%;
-  a {
-    font-size: 0.9em;
-    text-decoration: none;
-    color: inherit;
-  }
-`;
 const Popular = styled.h4`
-  font-size: 25px;
-  font-weight: 400;
-  margin-left: 7.5em;
-  /* align-self: flex-start; */
-  color: rgb(94, 115, 128);
-  text-transform: uppercase;
+    font-size: 1.8em;
+    margin-left: 1em;
+    justify-self: flex-start;
+    font-family: "Overpass", sans-serif;
+    color: rgb(94,115,128);
+    font-weight: 700;
 `;
 const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+    grid-gap: 28px 30px;
+    grid-template-columns: repeat(auto-fill,185px);
 `;
 const AnimeContainer = styled.div`
   height: 20em;
@@ -55,18 +43,15 @@ const Title = styled.p`
   font-size: 0.9em;
   align-self: flex-start;
 `;
-function PopularAnime() {
+function Popularpage() {
   const popularAnime = useSelector((state) => state.anime.popularPage);
   return (
     <>
       <Container>
-        <ViewAll>
-          <Link to="/popular">View All</Link>
-        </ViewAll>
-        <Popular>Popular This Season</Popular>
+        <Popular>Fall 2022 Anime</Popular>
         <CardContainer>
           {popularAnime &&
-            popularAnime.Page.media.slice(0, 5).map((element) => {
+            popularAnime.Page.media.map((element) => {
               return (
                 <>
                   <AnimeContainer>
@@ -86,4 +71,4 @@ function PopularAnime() {
   );
 }
 
-export default PopularAnime;
+export default Popularpage;

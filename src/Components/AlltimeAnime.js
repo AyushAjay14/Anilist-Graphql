@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {useSelector} from 'react-redux'
+import {Link} from 'react-router-dom'
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -60,7 +61,7 @@ function AlltimeAnime() {
   return (
     <>
     <Container>
-    <ViewAll><a href="/">View All</a></ViewAll>
+    <ViewAll><Link to="/alltime">View All</Link></ViewAll>
         <Alltime>All time Popular</Alltime>
         <CardContainer>
         {popularAnime &&
