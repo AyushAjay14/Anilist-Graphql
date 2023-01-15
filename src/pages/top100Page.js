@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const colors = [
   "#3e42f4",
   "#f08d74",
@@ -83,12 +85,18 @@ function Top100AnimePage() {
             top100Anime.Page.media.map((element, id) => {
               return (
                 <>
-                  <AnimeContainer>
+                  <AnimeContainer key={id} onClick={<Navigate replave to={`/${element.id}`}/>}>
                     <Ranking bgd={colors[id % 10]}>
                       <p>#{id + 1}</p>
                     </Ranking>
                     <ImageContainer>
-                      <img src={element?.coverImage?.extraLarge} alt="" />
+                    <LazyLoadImage
+                        alt="Product image"
+                        height={280}
+                        src={element?.coverImage?.extraLarge}
+                        effect="blur"
+                        width={200}
+                      />
                     </ImageContainer>
                     <ContentContainer>
                       <Title>{element?.title?.userPreferred}</Title>

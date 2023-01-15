@@ -5,6 +5,8 @@ const initialState = {
     popularPage: null,
     alltimePage: null,
     top100Page: null,
+    animeDesc: null,
+    characters: null
 }
 const animeSlice = createSlice({
     name : "anime",
@@ -21,8 +23,14 @@ const animeSlice = createSlice({
         },
         getTop100Page: (state , action) => {
             state.top100Page = action.payload;
+        },
+        getAnimeDesc: (state , action) =>{
+            state.animeDesc = action.payload;
+        },
+        getCharacters: (state , action) =>{
+            state.characters = action.payload;
         }
     }
 })
-export const {getAnimePage , getPopularPage , getAlltimePage , getTop100Page} = animeSlice.actions;
+export const {getAnimePage , getPopularPage , getAlltimePage , getTop100Page , getAnimeDesc,getCharacters} = animeSlice.actions;
 export default animeSlice.reducer;

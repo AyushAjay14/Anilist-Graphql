@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Container = styled.div`
   width: 73%;
@@ -23,6 +24,7 @@ const CardContainer = styled.div`
 const AnimeContainer = styled.div`
   height: 20em;
   width: 12em;
+
   //   flex: 1.2 0.8;
   margin: 2em 1.5em;
 `;
@@ -51,10 +53,10 @@ function Popularpage() {
         <Popular>Fall 2022 Anime</Popular>
         <CardContainer>
           {popularAnime &&
-            popularAnime.Page.media.map((element) => {
+            popularAnime.Page.media.map((element , id) => {
               return (
                 <>
-                  <AnimeContainer>
+                  <AnimeContainer  >
                     <ImageContainer>
                       <img src={element?.coverImage?.extraLarge} alt="" />
                     </ImageContainer>

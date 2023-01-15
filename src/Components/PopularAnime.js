@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import {Link} from 'react-router-dom'
+import {Link , useNavigate } from 'react-router-dom'
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -57,6 +57,7 @@ const Title = styled.p`
 `;
 function PopularAnime() {
   const popularAnime = useSelector((state) => state.anime.popularPage);
+  const navigate = useNavigate();
   return (
     <>
       <Container>
@@ -69,7 +70,7 @@ function PopularAnime() {
             popularAnime.Page.media.slice(0, 5).map((element) => {
               return (
                 <>
-                  <AnimeContainer>
+                  <AnimeContainer onClick={() => navigate(`${element.id}`)}>
                     <ImageContainer>
                       <img src={element?.coverImage?.extraLarge} alt="" />
                     </ImageContainer>

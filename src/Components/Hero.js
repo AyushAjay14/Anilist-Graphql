@@ -65,10 +65,10 @@ function Hero() {
           </SecHeading>
         </Heading>
         <InfoDiv>
-            {icon1.map((e) => {
+            {icon1.map((e , id) => {
               return (
                 <>
-                  <Holder>
+                  <Holder key={id}>
                     <img src={e.img} alt="" />
                     <InfoContainer>
                       <p style={{ color: "white", fontSize: "1.1em" , margin: "8px 0" }}>

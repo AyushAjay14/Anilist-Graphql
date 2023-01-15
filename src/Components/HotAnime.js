@@ -1,11 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import {Link} from 'react-router-dom'
+import {Link , useNavigate} from 'react-router-dom'
 const Container = styled.div`
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center; */
   width: 100%;
   height: 59vh;
   position: relative;
@@ -57,7 +54,7 @@ const Title = styled.p`
 `;
 function HotAnime() {
   const animePage = useSelector((state) => state.anime.animePage);
-  
+  const navigate = useNavigate();
 
   return (
     <>
@@ -66,10 +63,10 @@ function HotAnime() {
         <Trending>Trending Now</Trending>
         <TrendContainer>
           {animePage &&
-            animePage.Page.mediaTrends.slice(0, 5).map((element) => {
+            animePage.Page.mediaTrends.slice(0, 5).map((element , id) => {
               return (
                 <>
-                  <AnimeContainer>
+                  <AnimeContainer key={id} onClick={() => navigate(`${element?.media.id}`)}>
                     <ImageContainer>
                       <img src={element?.media.coverImage?.extraLarge} alt="" />
                     </ImageContainer>

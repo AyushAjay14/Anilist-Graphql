@@ -137,7 +137,7 @@ function Top100() {
                       </TitleCOntainer>
                       <Review>
                         <i
-                          class="bx bx-smile bx-sm"
+                          className="bx bx-smile bx-sm"
                           style={{ color: "#62d062" }}
                         ></i>
                         <Percent>{element.averageScore}%</Percent>

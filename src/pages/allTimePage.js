@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const Container = styled.div`
   width: 73%;
   margin: auto;
@@ -52,12 +53,18 @@ function AlltimePage() {
         <Alltime>All-Time Popular Anime</Alltime>
         <CardContainer>
           {popularAnime &&
-            popularAnime.Page.media.map((element) => {
+            popularAnime.Page.media.map((element , id) => {
               return (
                 <>
-                  <AnimeContainer>
+                  <AnimeContainer key={id}>
                     <ImageContainer>
-                      <img src={element?.coverImage?.extraLarge} alt="" />
+                    <LazyLoadImage
+                        alt="Product image"
+                        height={280}
+                        src={element?.coverImage?.extraLarge}
+                        effect="blur"
+                        width={200}
+                      />
                     </ImageContainer>
                     <ContentContainer>
                       <Title>{element?.title?.userPreferred}</Title>
